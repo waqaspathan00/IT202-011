@@ -32,9 +32,12 @@ require(__DIR__."/../../partials/nav.php");?>
         array_push($errors, "Email must be set");
      }
      //sanitize
-     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+     //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+     $email = sanitize_email($email);
+     
      //validate
-     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+     //if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+     if (!is_valid_email($email)){
         array_push($errors, "Invalid email address");
      }
      if(empty($password)){
@@ -59,6 +62,8 @@ require(__DIR__."/../../partials/nav.php");?>
                     unset($user["password"]);
                     if(password_verify($password, $hash)){
                         echo "Welcome, $email";
+                        $_SESSION["user"] = $user;
+                        die(header("Location: home.php"));
                     } else {
                         echo "Invalid password";
                     }
@@ -69,8 +74,6 @@ require(__DIR__."/../../partials/nav.php");?>
         } catch (Exception $e){
             echo "<pre>" . var_export($e, true) . "</pre>";
         }
-
-        
      }
  }
 ?>
