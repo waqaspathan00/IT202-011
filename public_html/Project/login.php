@@ -74,8 +74,6 @@ require(__DIR__."/../../partials/nav.php");?>
         } catch (Exception $e){
             echo "<pre>" . var_export($e, true) . "</pre>";
         }
-
-        
      }
  }
 ?>
