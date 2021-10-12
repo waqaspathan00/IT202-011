@@ -21,37 +21,37 @@ require(__DIR__."/../../partials/nav.php");?>
 </script>
 <?php
  //TODO 2: add PHP Code
- if(isset($_POST["email"]) && isset($_POST["password"])){
-     //get the email key from $_POST, default to "" if not set, and return the value
-     $email = se($_POST, "email","", false);
-     //same as above but for password
-     $password = se($_POST, "password", "", false);
-     //TODO 3: validate/use
-     $errors = [];
-     if(empty($email)){
-        array_push($errors, "Email must be set");
-     }
-     //sanitize
-     //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
-     $email = sanitize_email($email);
-     
-     //validate
-     //if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-     if (!is_valid_email($email)){
-        array_push($errors, "Invalid email address");
-     }
-     if(empty($password)){
-         array_push($errors, "Password must be set");
-     }
-     if(strlen($password) < 8){
-         array_push($errors, "Password must be 8 or more characters");
-     }
-     if(count($errors) > 0){
-         echo "<pre>" . var_export($errors, true) . "</pre>";
-     }
-     else{
-        $db = getDB();
-        $stmt = $db->prepare("SELECT email, password FROM Users WHERE email = :email");
+if(isset($_POST["email"]) && isset($_POST["password"])){
+    //get the email key from $_POST, default to "" if not set, and return the value
+    $email = se($_POST, "email","", false);
+    //same as above but for password
+    $password = se($_POST, "password", "", false);
+    //TODO 3: validate/use
+    $errors = [];
+    if(empty($email)){
+       array_push($errors, "Email must be set");
+    }
+    //sanitize
+    //$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $email = sanitize_email($email);
+    
+    //validate
+    //if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    if (!is_valid_email($email)){
+        flash("Invalid email address");
+    }
+    if(empty($password)){
+        flash("Password must be set");
+    }
+    if(strlen($password) < 8){
+        flash("Password must be 8 or more characters");
+    }
+    if(count($errors) > 0){
+        flash(var_export($errors, true));
+    }
+    else{
+       $db = getDB();
+       $stmt = $db->prepare("SELECT email, password FROM Users WHERE email = :email");
 
         try{
             $r = $stmt->execute([":email" => $email]);
@@ -61,19 +61,21 @@ require(__DIR__."/../../partials/nav.php");?>
                     $hash = $user["password"];
                     unset($user["password"]);
                     if(password_verify($password, $hash)){
-                        echo "Welcome, $email";
+                        flash("Welcome, $email");
                         $_SESSION["user"] = $user;
                         die(header("Location: home.php"));
                     } else {
-                        echo "Invalid password";
+                        flash("Invalid password");
                     }
                 } else {
-                    echo "Invalid email";
+                    flash("Invalid email");
                 }
             }
         } catch (Exception $e){
-            echo "<pre>" . var_export($e, true) . "</pre>";
+            flash(var_export($e, true));
         }
-     }
- }
+    }
+}
+
+require(__DIR__ . "/../../partials/flash.php");
 ?>
