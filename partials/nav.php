@@ -8,7 +8,7 @@ if(strpos($domain, ":")){
 
 session_set_cookie_params([
     "lifetime" => 60 * 60,
-    "$path" => "/Project",
+    "path" => "/Project",
     "domain" => $domain,
     "secure" => true,
     "httponly" => true,
