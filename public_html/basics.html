@@ -21,7 +21,7 @@
     var score = 0;
 
     // size of snake segments and food
-    var blockSize = 25;
+    var blockSize = 10;
 
     // Properties for your square
     var snakeX = 50; // X position
@@ -48,7 +48,6 @@
     // Listen for keydown events to move the snake
     canvas.addEventListener('keydown', function(event) {
         event.preventDefault();
-        console.log(event.key, event.keyCode);
         if (event.keyCode === 83) { // s
             snakeXChange = 0
             snakeYChange = blockSize
@@ -76,6 +75,7 @@
         context.fillText('Snake Game!', canvas.width / 2, canvas.height / 4);
         context.font = '24px Arial';
         context.fillText('Click to Start', canvas.width / 2, canvas.height / 2);
+        context.fillText("Collect as many points as you can in 30 seconds", canvas.width / 2, canvas.height / 3)
         context.font = '18px Arial'
         context.fillText('Use WASD keys to move', canvas.width / 2, (canvas.height / 4) * 3);
         // Start the game on a click
@@ -91,9 +91,9 @@
         // Stop listening for click events
         canvas.removeEventListener('click', startGame);
         // Put the target at a random starting point
-            moveFood();
+        moveFood();
         // Kick off the draw loop
-        draw();
+        window.requestAnimationFrame(draw);
     }
 
     // Show the game over screen
@@ -108,10 +108,12 @@
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
     }
 
-    // Move the target square to a random position
+    // Move the food to a random position 
     function moveFood() {
-        foodX = Math.round(Math.random() * canvas.width - blockSize);
-        foodY = Math.round(Math.random() * canvas.height - blockSize)
+        foodX = Math.floor((Math.random() * canvas.width - blockSize) / 10.0) * 10.0;
+        foodY = Math.floor((Math.random() * canvas.height - blockSize) / 10.0) * 10.0;
+
+        console.log(foodX, foodY);
     }
 
     // Clear the canvas
@@ -120,16 +122,28 @@
         context.fillRect(0, 0, 600, 400);
     }
 
+    // move each segment of the snake
+    function moveSnake(){
+        snakeSegments.forEach((segment) => {
+            // draw the segment
+            context.fillStyle = '#FF0000';
+            context.fillRect(segment[0], segment[1], blockSize, blockSize);
+        })
+    }
+
     // The main draw loop
     function draw() {
         erase();
 
         // move the snake continuously accordingly to the last inputted direction
-        snakeX += snakeXChange
-        snakeY += snakeYChange
+        snakeX += snakeXChange;
+        snakeY += snakeYChange;
+
+        // add a new segment to the snakeSegments array according to current position
         let snakeSegment = [snakeX, snakeY]
         snakeSegments.push(snakeSegment)
 
+        // remove the first segment of the snake if the length of it has not increased
         if (snakeSegments.length > snakeLength){
             snakeSegments.shift()
         }
@@ -148,19 +162,26 @@
             snakeX = canvas.width - blockSize;
         }
 
-        // Collide with the target
-        if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
-            if (isWithin(foodY, snakeY, snakeY + blockSize) || isWithin(foodY + blockSize, snakeY, snakeY + blockSize)) { // Y
-                // Respawn the target
-                moveFood();
-                // Increase the score
-                score++;
-                snakeLength++;
-            }
+        // check is snake is colliding with food
+        if (foodX === snakeX && foodY === snakeY){
+            moveFood();
+            // Increase the score
+            score++;
+            snakeLength++;
         }
-        // Draw the square
-        context.fillStyle = '#FF0000';
-        context.fillRect(snakeX, snakeY, blockSize, blockSize);
+        // if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
+        //     if (isWithin(foodY, snakeY, snakeY + blockSize) || isWithin(foodY + blockSize, snakeY, snakeY + blockSize)) { // Y
+        //     // Respawn the target
+        //     moveFood();
+        //     // Increase the score
+        //     score++;
+        //     snakeLength++;
+        //     }
+        // }
+
+        // move the snake
+        moveSnake();
+
         // Draw the target
         context.fillStyle = '#00FF00';
         context.fillRect(foodX, foodY, blockSize, blockSize);
@@ -170,6 +191,7 @@
         context.textAlign = 'left';
         context.fillText('Score: ' + score, 10, 24);
         context.fillText('Time Remaining: ' + countdown, 10, 50);
+        
         // End the game or keep playing
         if (countdown <= 0) {
             endGame();
