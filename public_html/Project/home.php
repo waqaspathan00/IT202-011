@@ -1,7 +1,7 @@
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 ?>
-<h1>Home</h1>
+<br>
 <?php
 if (is_logged_in()) {
     echo "Welcome home, " . get_user_email();
@@ -11,12 +11,16 @@ if (is_logged_in()) {
     echo "You're not logged in";
 }
 ?>
+<br>
+<br>
 
 <style>
     #canvas {
         width: 600px;
         height: 400px;
         border: 1px solid black;
+        margin: 0 auto;
+        display: block;
     }
 
 </style>
@@ -30,6 +34,10 @@ if (is_logged_in()) {
     var canvas = document.getElementById('canvas');
     // Get the canvas drawing context
     var context = canvas.getContext('2d');
+
+    let secondsPassed = 0;
+    let oldTimeStamp = 0;
+    let fps = 0;
 
     // Your score
     var score = 0;
@@ -140,18 +148,24 @@ if (is_logged_in()) {
     function moveSnake(){
         snakeSegments.forEach((segment) => {
             // draw the segment
-            context.fillStyle = '#FF0000';
+            context.fillStyle = '#3644E4';
             context.fillRect(segment[0], segment[1], blockSize, blockSize);
         })
     }
 
     // The main draw loop
-    function draw() {
+    function draw(timeStamp) {
+        secondsPassed = (timeStamp - oldTimeStamp) / 50;
+        // secondsPassed = Math.min(secondsPassed, 0.1);
+        oldTimeStamp = timeStamp;
+
         erase();
 
+        console.log(timeStamp)
+
         // move the snake continuously accordingly to the last inputted direction
-        snakeX += snakeXChange;
-        snakeY += snakeYChange;
+        snakeX += snakeXChange * secondsPassed;
+        snakeY += snakeYChange * secondsPassed;
 
         // add a new segment to the snakeSegments array according to current position
         let snakeSegment = [snakeX, snakeY]
@@ -176,28 +190,30 @@ if (is_logged_in()) {
             snakeX = canvas.width - blockSize;
         }
 
-        // check is snake is colliding with food
-        if (foodX === snakeX && foodY === snakeY){
-            moveFood();
-            // Increase the score
-            score++;
-            snakeLength++;
-        }
-        // if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
-        //     if (isWithin(foodY, snakeY, snakeY + blockSize) || isWithin(foodY + blockSize, snakeY, snakeY + blockSize)) { // Y
-        //     // Respawn the target
+        // DOESNT WORK: check if snake colliding with food using exact coords 
+        // if (foodX === snakeX && foodY === snakeY){
         //     moveFood();
         //     // Increase the score
         //     score++;
         //     snakeLength++;
-        //     }
         // }
+
+        // check is snake is colliding with food
+        if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
+            if (isWithin(foodY, snakeY, snakeY + blockSize) || isWithin(foodY + blockSize, snakeY, snakeY + blockSize)) { // Y
+            // Respawn the target
+            moveFood();
+            // Increase the score
+            score++;
+            snakeLength++;
+            }
+        }
 
         // move the snake
         moveSnake();
 
-        // Draw the target
-        context.fillStyle = '#00FF00';
+        // Draw the food
+        context.fillStyle = '#09804C';
         context.fillRect(foodX, foodY, blockSize, blockSize);
         // Draw the score and time remaining
         context.fillStyle = '#000000';
