@@ -124,7 +124,7 @@ $username = get_username();
         //find the flash container, create a new element, appendChild
         if (pw !== con) {
             //find the container
-            /*let flash = document.getElementById("flash");
+            let flash = document.getElementById("flash");
             //create a div (or whatever wrapper we want)
             let outerDiv = document.createElement("div");
             outerDiv.className = "row justify-content-center";
@@ -135,7 +135,7 @@ $username = get_username();
             innerDiv.innerText = "Password and Confirm password must match";
             outerDiv.appendChild(innerDiv);
             //add the element to the DOM (if we don't it merely exists in memory)
-            flash.appendChild(outerDiv);*/
+            flash.appendChild(outerDiv);
             flash("Password and Confirm password must match", "warning");
             isValid = false;
         }
