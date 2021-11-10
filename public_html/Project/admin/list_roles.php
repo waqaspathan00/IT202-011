@@ -1,96 +1,93 @@
 <?php
-require(__DIR__ . "/../../partials/nav.php");
-?>
-<form onsubmit="return validate(this)" method="POST">
-    <div>
-        <label for="email">Username/Email</label>
-        <input type="text" name="email" required />
-    </div>
-    <div>
-        <label for="pw">Password</label>
-        <input type="password" id="pw" name="password" required minlength="8" />
-    </div>
-    <input type="submit" value="Login" />
-</form>
-<script>
-    function validate(form) {
-        //TODO 1: implement JavaScript validation
-        //ensure it returns false for an error and true for success
+//note we need to go up 1 more directory
+require(__DIR__ . "/../../../partials/nav.php");
 
-        return true;
-    }
-</script>
-<?php
-//TODO 2: add PHP Code
-if (isset($_POST["email"]) && isset($_POST["password"])) {
-    $email = se($_POST, "email", "", false);
-    $password = se($_POST, "password", "", false);
-
-    //TODO 3
-    $hasError = false;
-    if (empty($email)) {
-        flash("Email must not be empty", "danger");
-        $hasError = true;
-    }
-    if (str_contains($email, "@")) {
-        //sanitize
-        $email = sanitize_email($email);
-        //validate
-        if (!is_valid_email($email)) {
-            flash("Invalid email address", "warning");
-            $hasError = true;
-        }
-    } else {
-        if (!preg_match('/^[a-z0-9_-]{3,30}$/i', $email)) {
-            flash("Username must only be alphanumeric and can only contain - or _", "warning");
-            $hasError = true;
-        }
-    }
-    if (empty($password)) {
-        flash("password must not be empty", "danger");
-        $hasError = true;
-    }
-    if (strlen($password) < 8) {
-        flash("Password too short", "danger");
-        $hasError = true;
-    }
-    if (!$hasError) {
-        //TODO 4
+if (!has_role("Admin")) {
+    flash("You don't have permission to view this page", "warning");
+    die(header("Location: $BASE_PATH" . "home.php"));
+}
+//handle the toggle first so select pulls fresh data
+if (isset($_POST["role_id"])) {
+    $role_id = se($_POST, "role_id", "", false);
+    if (!empty($role_id)) {
         $db = getDB();
-        $stmt = $db->prepare("SELECT id, email, username, password from Users where email = :email OR username = :email");
+        $stmt = $db->prepare("UPDATE Roles SET is_active = !is_active WHERE id = :rid");
         try {
-            $r = $stmt->execute([":email" => $email]);
-            if ($r) {
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($user) {
-                    $hash = $user["password"];
-                    unset($user["password"]);
-                    if (password_verify($password, $hash)) {
-                        flash("Welcome $email");
-                        $_SESSION["user"] = $user;
-                        //lookup potential roles
-                        $stmt = $db->prepare("SELECT Roles.name FROM Roles 
-                        JOIN UserRoles on Roles.id = UserRoles.role_id 
-                        where UserRoles.user_id = :user_id and Roles.is_active = 1 and UserRoles.is_active = 1");
-                        $stmt->execute([":user_id" => $user["id"]]);
-                        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetch all since we'll want multiple
-                        //save roles or empty array
-                        if ($roles) {
-                            $_SESSION["user"]["roles"] = $roles; //at least 1 role
-                        } else {
-                            $_SESSION["user"]["roles"] = []; //no roles
-                        }
-                        die(header("Location: home.php"));
-                    } else {
-                        flash("Invalid password", "danger");
-                    }
-                } else {
-                    flash("Email not found", "danger");
-                }
-            }
-        } catch (Exception $e) {
-            flash("<pre>" . var_export($e, true) . "</pre>");
+            $stmt->execute([":rid" => $role_id]);
+            flash("Updated Role", "success");
+        } catch (PDOException $e) {
+            flash(var_export($e->errorInfo, true), "danger");
         }
     }
 }
+$query = "SELECT id, name, description, is_active from Roles";
+$params = null;
+if (isset($_POST["role"])) {
+    $search = se($_POST, "role", "", false);
+    $query .= " WHERE name LIKE :role";
+    $params =  [":role" => "%$search%"];
+}
+$query .= " ORDER BY modified desc LIMIT 10";
+$db = getDB();
+$stmt = $db->prepare($query);
+$roles = [];
+try {
+    $stmt->execute($params);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($results) {
+        $roles = $results;
+    } else {
+        flash("No matches found", "warning");
+    }
+} catch (PDOException $e) {
+    flash(var_export($e->errorInfo, true), "danger");
+}
+
 ?>
+<div class="container-fluid">
+    <h1>List Roles</h1>
+    <form method="POST" class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="input-group mb-3">
+            <input class="form-control" type="search" name="role" placeholder="Role Filter" />
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </div>
+    </form>
+    <table class="table text-dark">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Active</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <?php if (empty($roles)) : ?>
+                <tr>
+                    <td colspan="100%">No roles</td>
+                </tr>
+            <?php else : ?>
+                <?php foreach ($roles as $role) : ?>
+                    <tr>
+                        <td><?php se($role, "id"); ?></td>
+                        <td><?php se($role, "name"); ?></td>
+                        <td><?php se($role, "description"); ?></td>
+                        <td><?php echo (se($role, "is_active", 0, false) ? "active" : "disabled"); ?></td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="role_id" value="<?php se($role, 'id'); ?>" />
+                                <?php if (isset($search) && !empty($search)) : ?>
+                                    <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
+                                    <input type="hidden" name="role" value="<?php se($search, null); ?>" />
+                                <?php endif; ?>
+                                <input class="btn btn-warning" type="submit" value="Toggle" />
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
+    <?php
+    //note we need to go up 1 more directory
+    require_once(__DIR__ . "/../../../partials/flash.php");
+    ?>
