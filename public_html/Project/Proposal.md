@@ -1,8 +1,8 @@
 # Project Name: Simple Arcade
 ## Project Summary: This project will create a simple Arcade with scoreboards and competitions based on the implemented game.
-## Github Link: 
-## Project Board Link: 
-## Website Link: (Heroku Prod of Project folder)
+## Github Link: https://github.com/waqaspathan00/IT202-011/tree/dev/public_html
+## Project Board Link: https://github.com/users/waqaspathan00/projects/2
+## Website Link: (Heroku Prod of Project folder): https://wp23-prod.herokuapp.com/Project/home.php
 ## Your Name: Waqas Pathan
 
 <!--
@@ -23,87 +23,97 @@
 ### Proposal Checklist and Evidence
 
 - Milestone 1
-    - [x] \(xx/xx/2021 of completion) User will be able to edit their profile
+    - [x] \(10/19/2021 of completion) User will be able to edit their profile
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/31 
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) User will be able to see their profile
+            - ![Profile Page](images/profile_page.png)
+                - This is the profile page. All of the fields are textboxes which the user can change the values of
+    - [x] \(11/07/2021 of completion) User will be able to see their profile
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/31 
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) Any output messages or errors should be user friendly
+            - ![Profile Page](images/profile_page.png)
+                - This is the profile page. When the user accesses this page it is preloaded with all of their current information
+    - [x] \(10/12/2021 of completion) Any output messages or errors should be user friendly
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/login.php 
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/7 
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) Site should have basic styles and theme applied
+            - ![Output Message](images/error_message.png)
+                - When the user logs in with the incorrect password they are presented with an error message telling them what went wrong
+    - [x] \(11/07/2021 of completion) Site should have basic styles and theme applied
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - https://wp23-prod.herokuapp.com/Project/login.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/34
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) Basic roles implemented
+            - ![Login Page](images/login_page.png)
+                - Throughout the entire site I have a nav bar, using bootstrap, and applied color
+    - [x] \(11/07/2021 of completion) Basic roles implemented
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/admin/list_roles.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/35
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) Basic security rules implemented
+            - ![List of Available Roles](images/list_of_roles.png)
+                - This screenshot shows the list of different available roles
+    - [x] \(11/07/2021 of completion) Basic security rules implemented
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/admin/list_roles.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/35
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) User will be able to log out
+            - ![Unauthorized access](images/denied.png)
+                - Vvarma who is not an admin being denied access to one of the admin pages (list roles)
+    - [x] \(10/07/2021 of completion) User will be able to log out
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/logout.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/10
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) 
+            - ![Logged in](images/logged_in.png)
+                - First the user in logged in and they are given the option to logout
+            - ![Logged out](images/logged_out.png)
+                - The screen after the user clicks logout
+    - [x] \(10/05/2021 of completion) User will be able to log into their account
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/login.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/6
+            - https://github.com/waqaspathan00/IT202-011/pull/10
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(xx/xx/2021 of completion) User will be able to see their profile
+            - ![Before Logging in](images/before_login.png)
+                - The user enters their username and password
+            - ![Logged in](images/logged_in.png)
+                - The user is logged in and greeted with welcome message
+    - [x] \(10/05/2021 of completion) User will be register an account
         -  List of Evidence of Feature Completion
-            - Status: Pending (Completed, Partially working, Incomplete, Pending)
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Status: Completed
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/register.php
             - Pull Requests
-            - PR link #1 (repeat as necessary)
+            - https://github.com/waqaspathan00/IT202-011/pull/5
+            - https://github.com/waqaspathan00/IT202-011/pull/6
             - Screenshots
-            - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-                - Screenshot #1 description explaining what you're trying to show
+            - ![Fill in information](images/registering_acc.png)
+                - Filling in new account information
+            - ![Account Registered](images/acc_registered.png)
+                - Account creation is successful
+            - ![Logged in with new account](images/welcome_new_user.png)
+                - Logging in with new account
     
 - Milestone 2
 - Milestone 3
