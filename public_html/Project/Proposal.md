@@ -80,7 +80,7 @@
     - [x] \(10/07/2021 of completion) User will be able to log out
         -  List of Evidence of Feature Completion
             - Status: Completed
-            - Direct Link: http://localhost:3005/Project/logout.php
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/logout.php
             - Pull Requests
             - https://github.com/waqaspathan00/IT202-011/pull/10
             - Screenshots
@@ -91,7 +91,7 @@
     - [x] \(10/05/2021 of completion) User will be able to log into their account
         -  List of Evidence of Feature Completion
             - Status: Completed
-            - Direct Link: http://localhost:3005/Project/login.php
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/login.php
             - Pull Requests
             - https://github.com/waqaspathan00/IT202-011/pull/6
             - https://github.com/waqaspathan00/IT202-011/pull/10
@@ -103,11 +103,10 @@
     - [x] \(10/05/2021 of completion) User will be register an account
         -  List of Evidence of Feature Completion
             - Status: Completed
-            - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+            - Direct Link: https://wp23-prod.herokuapp.com/Project/register.php
             - Pull Requests
             - https://github.com/waqaspathan00/IT202-011/pull/5
             - https://github.com/waqaspathan00/IT202-011/pull/6
-            
             - Screenshots
             - ![Fill in information](images/registering_acc.png)
                 - Filling in new account information
