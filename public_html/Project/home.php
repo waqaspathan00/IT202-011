@@ -189,14 +189,6 @@ if (is_logged_in()) {
             snakeX = canvas.width - blockSize;
         }
 
-        // DOESNT WORK: check if snake colliding with food using exact coords 
-        // if (foodX === snakeX && foodY === snakeY){
-        //     moveFood();
-        //     // Increase the score
-        //     score++;
-        //     snakeLength++;
-        // }
-
         // check is snake is colliding with food
         if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
             if (isWithin(foodY, snakeY, snakeY + blockSize) || isWithin(foodY + blockSize, snakeY, snakeY + blockSize)) { // Y
@@ -237,3 +229,11 @@ if (is_logged_in()) {
 <?php
 require(__DIR__ . "/../../partials/flash.php");
 ?>
+
+<!-- 
+
+using ajax, make a post request for the score variable when the game ends
+
+then in php, using session variables
+
+-->

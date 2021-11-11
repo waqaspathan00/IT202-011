@@ -60,59 +60,59 @@ try {
             }
         }
         foreach ($sql as $key => $value) {
-?>
+            ?>
 
-<details>
-    <summary><?php echo "Running: $key"; ?></summary>
-    <pre><code><?php echo $value; ?></code></pre>
-</details>
+            <details>
+                <summary><?php echo "Running: $key"; ?></summary>
+                <pre><code><?php echo $value; ?></code></pre>
+            </details>
 
-<?php
-    $lines = explode("(", $value, 2);
-    if (count($lines) > 0) {
-        //these lines attempt to extract the table info from any create commands
-        //to determine if they command should be skipped or not
-        $line = $lines[0];
-        //clear out duplicate whitespace
-        $line = preg_replace('!\s+!', ' ', $line);
-        //remove create table command
-        $line = str_ireplace("create table", "", $line);
-        //remove if not exists command
-        $line = str_ireplace("if not exists", "", $line);
-        //remove backticks
-        $line = str_ireplace("`", "", $line);
-        //trim whitespace in front and back
-        $line = trim($line);
-        if (in_array($line, $t)) {
-            echo "<p style=\"margin-left: 3em\">Blocked from running, table found in 'show tables' results. [This is ok, it reduces redundant DB calls]</p><br>";
-            continue;
-        }
-    }
-    $stmt = $db->prepare($value);
-    try {
-        $result = $stmt->execute();
-    } catch (PDOException $e) {
-        //ignoring as we know it'll be an error
-        //had to wrap in try catch due to PHP 8.0 now throwing errors for PDO exceptions
-    }
-    $count++;
-    $error = $stmt->errorInfo();
-?>
-<details style="margin-left: 3em">
-    <summary>Status: <?php echo ($error[0] === "00000" ? "Success" : "Error"); ?></summary>
-    <pre><?php echo var_export($error, true); ?></pre>
-</details>
+            <?php
+                $lines = explode("(", $value, 2);
+                if (count($lines) > 0) {
+                    //these lines attempt to extract the table info from any create commands
+                    //to determine if they command should be skipped or not
+                    $line = $lines[0];
+                    //clear out duplicate whitespace
+                    $line = preg_replace('!\s+!', ' ', $line);
+                    //remove create table command
+                    $line = str_ireplace("create table", "", $line);
+                    //remove if not exists command
+                    $line = str_ireplace("if not exists", "", $line);
+                    //remove backticks
+                    $line = str_ireplace("`", "", $line);
+                    //trim whitespace in front and back
+                    $line = trim($line);
+                    if (in_array($line, $t)) {
+                        echo "<p style=\"margin-left: 3em\">Blocked from running, table found in 'show tables' results. [This is ok, it reduces redundant DB calls]</p><br>";
+                        continue;
+                    }
+                }
+                $stmt = $db->prepare($value);
+                try {
+                    $result = $stmt->execute();
+                } catch (PDOException $e) {
+                    //ignoring as we know it'll be an error
+                    //had to wrap in try catch due to PHP 8.0 now throwing errors for PDO exceptions
+                }
+                $count++;
+                $error = $stmt->errorInfo();
+            ?>
+            <details style="margin-left: 3em">
+                <summary>Status: <?php echo ($error[0] === "00000" ? "Success" : "Error"); ?></summary>
+                <pre><?php echo var_export($error, true); ?></pre>
+            </details>
 
-<br>
+            <br>
 
-<?php
-        }
-        echo "<p>Init complete, used approximately $count db calls.</p>";
-    } else {
-        echo "<p>Didn't find any files, please check the directory/directory contents/permissions (note files must end in .sql)</p>";
-    }
-    $db = null;
-} catch (Exception $e) {
-    echo $e->getMessage();
-    exit("Something went wrong");
-}
+            <?php
+                    }
+                    echo "<p>Init complete, used approximately $count db calls.</p>";
+                } else {
+                    echo "<p>Didn't find any files, please check the directory/directory contents/permissions (note files must end in .sql)</p>";
+                }
+                $db = null;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                exit("Something went wrong");
+            }
