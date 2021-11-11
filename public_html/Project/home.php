@@ -12,7 +12,6 @@ if (is_logged_in()) {
 }
 ?>
 <br>
-<br>
 
 <style>
     #canvas {
