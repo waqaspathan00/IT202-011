@@ -118,13 +118,13 @@
 - Milestone 2
     - [x] \(11/10/2021 of completion) Pick a simple game to implement, anything that generates a score that’s more advanced than a simple random number generator (may build off of a sample from the site shared in class)
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/38 
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-            - Screenshot #1 description explaining what you're trying to show
+          - ![Game](images/game.png)
+            - The game is available to be played on the homepage
     - [ ] \(mm/dd/yyyy of completion) The system will save the user’s score at the end of the game if the user is logged in
       -  List of Evidence of Feature Completion
         - Status: Pending (Completed, Partially working, Incomplete, Pending)
