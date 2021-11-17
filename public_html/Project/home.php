@@ -62,7 +62,7 @@ if (is_logged_in()) {
     }
 
     // Countdown timer (in seconds)
-    var countdown = 30;
+    var countdown = 5;
     // ID to track the setTimeout
     var id = null;
 
@@ -127,6 +127,47 @@ if (is_logged_in()) {
         context.font = '24px Arial';
         context.textAlign = 'center';
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+
+        // add score to database
+        let data = {
+            score: score,
+            // data: sd
+        }
+
+        console.log(data)
+
+        // $.ajax({
+        //     type: "POST",
+        //     url: "api/save_score.php",
+        //     contentType: "application/json",
+        //     data: JSON.stringify({
+        //         data: data
+        //     }),
+        //     success: (resp, status, xhr) => {
+        //         console.log(resp, status, xhr);
+        //         window.location.reload(); //lazily reloading the page to get a new nonce for next game
+        //     },
+        //     error: (xhr, status, error) => {
+        //         console.log(xhr, status, error);
+        //         window.location.reload();
+        //     }
+        // });
+
+        fetch("api/save_score.php", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded",
+                "X-Requested-With": "XMLHttpRequest",
+            },
+            body: JSON.stringify({
+                "data": data
+            })
+        }).then(async res => {
+            let data = await res.json();
+            console.log("received data", data);
+            console.log("saved score");
+            // window.location.reload(); // reload the webpage for new game
+        })
     }
 
     // Move the food to a random position 
@@ -134,7 +175,7 @@ if (is_logged_in()) {
         foodX = Math.floor((Math.random() * canvas.width) / blockSize) * blockSize;
         foodY = Math.floor((Math.random() * canvas.height) / blockSize) * blockSize ;
 
-        console.log(foodX, foodY);
+        // console.log(foodX, foodY);
     }
 
     // Clear the canvas
@@ -159,8 +200,6 @@ if (is_logged_in()) {
         oldTimeStamp = timeStamp;
 
         erase();
-
-        console.log(timeStamp)
 
         // move the snake continuously accordingly to the last inputted direction
         snakeX += snakeXChange * secondsPassed;
