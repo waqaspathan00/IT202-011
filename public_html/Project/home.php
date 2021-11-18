@@ -129,10 +129,14 @@ if (is_logged_in()) {
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
 
         // add score to database
-        let data = {
-            score: score,
-            // data: sd
-        }
+        // let data = {
+        //     score: score,
+        //     // data: sd
+        // }
+
+        let data = new FormData();
+        data.append("score", score)
+
 
         console.log(data)
 
@@ -159,9 +163,10 @@ if (is_logged_in()) {
                 "Content-type": "application/x-www-form-urlencoded",
                 "X-Requested-With": "XMLHttpRequest",
             },
-            body: JSON.stringify({
-                "data": data
-            })
+            body: data
+            // body: JSON.stringify({
+            //     "data": data
+            // })
         }).then(async res => {
             let data = await res.json();
             console.log("received data", data);

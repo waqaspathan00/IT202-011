@@ -4,7 +4,7 @@
 $response = ["message" => "There was a problem saving your score"];
 http_response_code(400);
 $contentType = $_SERVER["CONTENT_TYPE"];
-flash("made it");
+// flash("made it");
 
 
 // error_log("Content Type $contentType");
@@ -16,7 +16,9 @@ if ($contentType === "application/json") {
 }
 
 error_log(var_export($data, true));
-if (isset($data["score"]) && isset($data["data"])) {
+// if (isset($data["score"]) && isset($data["data"])) {
+if (isset($data["score"])){
+    require_once(__DIR__ . "/../../../lib/functions.php");
     $db = getDB();
     session_start();
     $user_id = get_user_id();
