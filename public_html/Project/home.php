@@ -128,34 +128,12 @@ if (is_logged_in()) {
         context.textAlign = 'center';
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
 
-        // add score to database
-        // let data = {
-        //     score: score,
-        //     // data: sd
-        // }
+        console.log(score)
 
-        let data = new FormData();
+        var data = new FormData();
         data.append("score", score)
 
-
         console.log(data)
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: "api/save_score.php",
-        //     contentType: "application/json",
-        //     data: JSON.stringify({
-        //         data: data
-        //     }),
-        //     success: (resp, status, xhr) => {
-        //         console.log(resp, status, xhr);
-        //         window.location.reload(); //lazily reloading the page to get a new nonce for next game
-        //     },
-        //     error: (xhr, status, error) => {
-        //         console.log(xhr, status, error);
-        //         window.location.reload();
-        //     }
-        // });
 
         fetch("api/save_score.php", {
             method: "POST",
@@ -164,9 +142,6 @@ if (is_logged_in()) {
                 "X-Requested-With": "XMLHttpRequest",
             },
             body: data
-            // body: JSON.stringify({
-            //     "data": data
-            // })
         }).then(async res => {
             let data = await res.json();
             console.log("received data", data);
@@ -177,8 +152,8 @@ if (is_logged_in()) {
 
     // Move the food to a random position 
     function moveFood() {
-        foodX = Math.floor((Math.random() * canvas.width) / blockSize) * blockSize;
-        foodY = Math.floor((Math.random() * canvas.height) / blockSize) * blockSize ;
+        foodX = Math.floor((Math.random() * (canvas.width - blockSize)) / blockSize) * blockSize + blockSize;
+        foodY = Math.floor((Math.random() * (canvas.height - blockSize)) / blockSize) * blockSize ;
 
         // console.log(foodX, foodY);
     }

@@ -5,11 +5,11 @@ $response = ["message" => "There was a problem saving your score"];
 http_response_code(400);
 $contentType = $_SERVER["CONTENT_TYPE"];
 
-if ($contentType === "application/json") {
+if ($contentType === "application/x-www-form-urlencoded") {
+    $data = $_POST;
+} else if ($contentType === "application/json") {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true)["data"];
-} else if ($contentType === "application/x-www-form-urlencoded") {
-    $data = $_POST;
 }
 
 error_log(var_export($data, true));
