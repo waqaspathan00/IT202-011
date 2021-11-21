@@ -153,7 +153,7 @@ if (is_logged_in()) {
             let data = await res.json();
             console.log("received data", data);
             console.log("saved score");
-            // window.location.reload(); // reload the webpage for new game
+            window.location.reload(); // reload the webpage for new game
         })
     }
 

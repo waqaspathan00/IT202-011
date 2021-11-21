@@ -125,15 +125,16 @@
         - Screenshots
           - ![Game](images/game.png)
             - The game is available to be played on the homepage
-    - [ ] \(mm/dd/yyyy of completion) The system will save the user’s score at the end of the game if the user is logged in
+    - [x] \(11/21/2021 of completion) The system will save the user’s score at the end of the game if the user is logged in
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
+        - Status: Completed
         - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
         - Pull Requests
           - PR link #1 (repeat as necessary)
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - ![Game](images/game.png)
             - Screenshot #1 description explaining what you're trying to show
+          
     - [ ] \(mm/dd/yyyy of completion) The user will be able to see their last 10 scores
       -  List of Evidence of Feature Completion
         - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -141,7 +142,7 @@
         - Pull Requests
           - PR link #1 (repeat as necessary)
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Screenshot #1 (paste the i  mage so it uploads to github) (repeat as necessary)
             - Screenshot #1 description explaining what you're trying to show
     - [ ] \(mm/dd/yyyy of completion) Create functions that output the following scoreboards (this will be used later)
       -  List of Evidence of Feature Completion

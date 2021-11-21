@@ -130,9 +130,9 @@ function get_url($dest)
     //handle relative path
     return $BASE_PATH . $dest;
 }
+
 function save_score( $user_id, $score, $showFlash = false)
 {
-    flash("test");
     if ($user_id < 1) {
         flash("Error saving score, you may not be logged in", "warning");
         return;
