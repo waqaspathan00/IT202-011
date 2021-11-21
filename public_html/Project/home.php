@@ -130,18 +130,25 @@ if (is_logged_in()) {
 
         console.log(score)
 
-        var data = new FormData();
-        data.append("score", score)
+        // var data = new FormData();
+        // data.append("score", score)
+        let data = {
+            score: score
+        }
 
         console.log(data)
 
         fetch("api/save_score.php", {
             method: "POST",
             headers: {
-                "Content-type": "application/x-www-form-urlencoded",
+                // "Content-type": "application/x-www-form-urlencoded",
+                "Content-type": "application/json",
                 "X-Requested-With": "XMLHttpRequest",
             },
-            body: data
+            // body: data
+            body: JSON.stringify({
+                "data": data
+            })
         }).then(async res => {
             let data = await res.json();
             console.log("received data", data);
@@ -153,7 +160,7 @@ if (is_logged_in()) {
     // Move the food to a random position 
     function moveFood() {
         foodX = Math.floor((Math.random() * (canvas.width - blockSize)) / blockSize) * blockSize + blockSize;
-        foodY = Math.floor((Math.random() * (canvas.height - blockSize)) / blockSize) * blockSize ;
+        foodY = Math.floor((Math.random() * (canvas.height - blockSize)) / blockSize) * blockSize + blockSize;
 
         // console.log(foodX, foodY);
     }
