@@ -128,13 +128,14 @@
     - [x] \(11/21/2021 of completion) The system will save the user’s score at the end of the game if the user is logged in
       -  List of Evidence of Feature Completion
         - Status: Completed
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/39
         - Screenshots
-          - ![Game](images/game.png)
-            - Screenshot #1 description explaining what you're trying to show
-          
+          - ![Saved Score](images/saved_score.png)
+            - The score being saved after finished game
+          - ![DB Saved Score](images/score_saved_in_db.png)
+            - The score being saved into db
     - [ ] \(mm/dd/yyyy of completion) The user will be able to see their last 10 scores
       -  List of Evidence of Feature Completion
         - Status: Pending (Completed, Partially working, Incomplete, Pending)
