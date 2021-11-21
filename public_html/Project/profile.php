@@ -81,6 +81,32 @@ if (isset($_POST["save"])) {
 }
 ?>
 
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">Score</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+        $db = getDB();
+        $stmt = $db->prepare("SELECT score, modified FROM Scores");
+        $stmt->execute(array());
+    ?>
+    
+    <?php foreach($stmt as $row): ?>
+        <tr>
+            <td><?=$row['score']?></td>
+            <td><?=$row['modified']?></td>
+        </tr>
+    <?php endforeach ?>
+
+  </tbody>
+</table>
+
+
+
 <?php
 $email = get_user_email();
 $username = get_username();
