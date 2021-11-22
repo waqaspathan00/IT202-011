@@ -152,3 +152,18 @@ function save_score( $user_id, $score, $showFlash = false)
         flash("Error saving score: " . var_export($e->errorInfo, true), "danger");
     }
 }
+
+function get_top_10_weekly()
+{
+
+}
+
+function get_top_10_monthly()
+{
+    
+}
+
+function get_top_10_lifetime()
+{
+    
+}

@@ -91,11 +91,11 @@ if (isset($_POST["save"])) {
   <tbody>
     <?php
         $db = getDB();
-        $stmt = $db->prepare("SELECT user_id, score, modified FROM Scores");
+        $stmt = $db->prepare("SELECT user_id, score, modified FROM Scores ORDER BY modified DESC LIMIT 11");
         $stmt->execute(array());
         $user_id = get_user_id()
     ?>
-    
+                                                            
     <?php foreach($stmt as $row): ?>
         <?php if($row["user_id"] === $user_id) : ?>
             <tr>
