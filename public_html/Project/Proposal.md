@@ -138,13 +138,13 @@
             - The score being saved into db
     - [ ] \(mm/dd/yyyy of completion) The user will be able to see their last 10 scores
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/39
         - Screenshots
-          - Screenshot #1 (paste the i  mage so it uploads to github) (repeat as necessary)
-            - Screenshot #1 description explaining what you're trying to show
+          - ![Last 10 Scores](images/last_10_scores.png)
+            - The last 10 scores of the user will be displayed
     - [ ] \(mm/dd/yyyy of completion) Create functions that output the following scoreboards (this will be used later)
       -  List of Evidence of Feature Completion
         - Status: Pending (Completed, Partially working, Incomplete, Pending)

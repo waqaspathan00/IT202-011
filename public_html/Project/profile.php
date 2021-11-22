@@ -91,15 +91,18 @@ if (isset($_POST["save"])) {
   <tbody>
     <?php
         $db = getDB();
-        $stmt = $db->prepare("SELECT score, modified FROM Scores");
+        $stmt = $db->prepare("SELECT user_id, score, modified FROM Scores");
         $stmt->execute(array());
+        $user_id = get_user_id()
     ?>
     
     <?php foreach($stmt as $row): ?>
-        <tr>
-            <td><?=$row['score']?></td>
-            <td><?=$row['modified']?></td>
-        </tr>
+        <?php if($row["user_id"] === $user_id) : ?>
+            <tr>
+                <td><?=$row['score']?></td>
+                <td><?=$row['modified']?></td>
+            </tr>
+        <?php endif; ?>
     <?php endforeach ?>
 
   </tbody>
