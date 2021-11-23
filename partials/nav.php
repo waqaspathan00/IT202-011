@@ -37,8 +37,8 @@ require_once(__DIR__ . "/../lib/functions.php");
         </button>
         <div class="collapse navbar-collapse" id="navContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="<?php echo get_url("scoreboard.php"); ?>">Scoreboard</a></li>
                 <?php if (is_logged_in()) : ?>
-
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
                 <?php endif; ?>
                 <?php if (!is_logged_in()) : ?>

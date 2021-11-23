@@ -136,7 +136,7 @@
             - The score being saved after finished game
           - ![DB Saved Score](images/score_saved_in_db.png)
             - The score being saved into db
-    - [ ] \(mm/dd/yyyy of completion) The user will be able to see their last 10 scores
+    - [x] \(11/21/2021 of completion) The user will be able to see their last 10 scores
       -  List of Evidence of Feature Completion
         - Status: Completed
         - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php

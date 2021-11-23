@@ -153,17 +153,35 @@ function save_score( $user_id, $score, $showFlash = false)
     }
 }
 
-function get_top_10_weekly()
-{
+function get_top_10($duration){
+    $db = getDB();
+    $query = "SELECT user_id, username, score, Scores.modified FROM Scores JOIN Users ON Scores.user_id = Users.id";
 
-}
+    // the next few lines of code append functionality to the query string
+    if ($duration !== "lifetime"){
+        // if interval is not lifetime (IE week or month) then we need to filter the results 
+        $query .= " WHERE Scores.modified >= DATE_SUB(NOW(), INTERVAL 1 $duration)";
+    }
+    // regardless of interval, we only want the best 10 results
+    $query .= " ORDER BY score DESC, Scores.modified DESC LIMIT 10";
 
-function get_top_10_monthly()
-{
-    
-}
+    error_log($query);
+    $stmt = $db->prepare($query);
+    $results = [];
+    try {
+        $stmt->execute();
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r){
+            $results = $r;
+        }
+    } catch (PDOException $err){
+        error_log("Error fetching scores for $duration: " . var_export($err->errorInfo, true));
+    }
 
-function get_top_10_lifetime()
-{
-    
+    print("results:");
+    foreach($results as $result){
+        print($result);
+    }
+
+    return $results;
 }
