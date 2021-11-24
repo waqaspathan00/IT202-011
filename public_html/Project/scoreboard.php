@@ -8,8 +8,8 @@
 <!-- <div class="container-fluid"> -->
 <div>
     <form method="POST" action="#">
-        <input type="submit" name="time" value="Weekly"/>
-        <input type="submit" name="time" value="Monthly"/>
+        <input type="submit" name="time" value="Week"/>
+        <input type="submit" name="time" value="Month"/>
         <input type="submit" name="time" value="Lifetime"/>
     </form>
 </div>
@@ -19,20 +19,42 @@
     if (isset($_POST["time"])){
         $duration = $_POST["time"];
     }
-    if ($duration == "Weekly"){
+    if ($duration == "Week"){
         $duration = "week";
-    } else if ($duration == "Monthly"){
+    } else if ($duration == "Month"){
         $duration = "month";
     } else if ($duration == "Lifetime"){
         $duration = "lifetime";
     }
 
-
     $results = get_top_10($duration);
-    print(var_export($results, true));
+    // print(var_export($results, true));
     
-    // foreach($results as $result){
-    //     print($result);
-    // }
-
 ?>
+
+<table class="table table-light">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Score</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            $db = getDB();
+            $stmt = $db->prepare("SELECT user_id, username, score, Scores.modified FROM Scores JOIN Users ON Scores.user_id = Users.id ORDER BY score DESC LIMIT 10");
+            $stmt->execute(array());
+            $user_id = get_user_id()
+        ?>
+                                                            
+        <?php foreach($results as $row): ?>
+            <tr>
+                <td><?=$row['username']?></td>
+                <td><?=$row['score']?></td>
+                <td><?=$row['modified']?></td>
+            </tr>
+        <?php endforeach ?>
+
+    </tbody>
+</table>

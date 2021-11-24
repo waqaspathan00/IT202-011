@@ -62,7 +62,7 @@ if (is_logged_in()) {
     }
 
     // Countdown timer (in seconds)
-    var countdown = 5;
+    var countdown = 30;
     // ID to track the setTimeout
     var id = null;
 
@@ -159,8 +159,8 @@ if (is_logged_in()) {
 
     // Move the food to a random position 
     function moveFood() {
-        foodX = Math.floor((Math.random() * (canvas.width - blockSize)) / blockSize) * blockSize + blockSize;
-        foodY = Math.floor((Math.random() * (canvas.height - blockSize)) / blockSize) * blockSize + blockSize;
+        foodX = Math.floor((Math.random() * (canvas.width - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
+        foodY = Math.floor((Math.random() * (canvas.height - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
 
         // console.log(foodX, foodY);
     }
@@ -182,7 +182,7 @@ if (is_logged_in()) {
 
     // The main draw loop
     function draw(timeStamp) {
-        secondsPassed = (timeStamp - oldTimeStamp) / 50;
+        secondsPassed = (timeStamp - oldTimeStamp) / 60;
         // secondsPassed = Math.min(secondsPassed, 0.1);
         oldTimeStamp = timeStamp;
 

@@ -178,10 +178,6 @@ function get_top_10($duration){
         error_log("Error fetching scores for $duration: " . var_export($err->errorInfo, true));
     }
 
-    print("results:");
-    foreach($results as $result){
-        print($result);
-    }
-
+    // var_export($results);
     return $results;
 }
