@@ -152,9 +152,9 @@
         - Pull Requests
           - https://github.com/waqaspathan00/IT202-011/pull/58
         - Screenshots
-          - ![Highscores for the Week](images/week_scoreboard.png)
+          - ![Highscores for the Week](images/week_scores.png)
             - The top 10 scores for the last week
-          - ![Highscores for the Month](images/month_scoreboard.png)
+          - ![Highscores for the Month](images/month_scores.png)
             - The top 10 scores for the last month
           - ![Lifetime Highscores](images/lifetime_scores.png)
             - Lifetime top 10 high scores
