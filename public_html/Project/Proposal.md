@@ -125,33 +125,39 @@
         - Screenshots
           - ![Game](images/game.png)
             - The game is available to be played on the homepage
-    - [ ] \(mm/dd/yyyy of completion) The system will save the user’s score at the end of the game if the user is logged in
+    - [x] \(11/21/2021 of completion) The system will save the user’s score at the end of the game if the user is logged in
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/39
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-            - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(mm/dd/yyyy of completion) The user will be able to see their last 10 scores
+          - ![Saved Score](images/saved_score.png)
+            - The score being saved after finished game
+          - ![DB Saved Score](images/score_saved_in_db.png)
+            - The score being saved into db
+    - [x] \(11/21/2021 of completion) The user will be able to see their last 10 scores
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/39
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-            - Screenshot #1 description explaining what you're trying to show
-    - [ ] \(mm/dd/yyyy of completion) Create functions that output the following scoreboards (this will be used later)
+          - ![Last 10 Scores](images/last_10_scores.png)
+            - The last 10 scores of the user will be displayed
+    - [x] \(11/24/2021 of completion) Create functions that output the following scoreboards (this will be used later)
       -  List of Evidence of Feature Completion
-        - Status: Pending (Completed, Partially working, Incomplete, Pending)
-        - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/scoreboard.php
         - Pull Requests
-          - PR link #1 (repeat as necessary)
+          - https://github.com/waqaspathan00/IT202-011/pull/39
         - Screenshots
-          - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-            - Screenshot #1 description explaining what you're trying to show
+          - ![Highscores for the Week](images/week_scoreboard.png)
+            - The top 10 scores for the last week
+          - ![Highscores for the Month](images/month_scoreboard.png)
+            - The top 10 scores for the last month
+          - ![Lifetime Highscores](images/lifetime_scores.png)
+            - Lifetime top 10 high scores
 - Milestone 3
 - Milestone 4
 ### Intructions

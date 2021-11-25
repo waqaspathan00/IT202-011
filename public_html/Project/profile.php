@@ -81,6 +81,35 @@ if (isset($_POST["save"])) {
 }
 ?>
 
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">Score</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+        $db = getDB();
+        $stmt = $db->prepare("SELECT user_id, score, modified FROM Scores ORDER BY modified DESC LIMIT 11");
+        $stmt->execute(array());
+        $user_id = get_user_id()
+    ?>
+                                                            
+    <?php foreach($stmt as $row): ?>
+        <?php if($row["user_id"] === $user_id) : ?>
+            <tr>
+                <td><?=$row['score']?></td>
+                <td><?=$row['modified']?></td>
+            </tr>
+        <?php endif; ?>
+    <?php endforeach ?>
+
+  </tbody>
+</table>
+
+d
+
 <?php
 $email = get_user_email();
 $username = get_username();

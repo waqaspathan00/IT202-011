@@ -127,14 +127,42 @@ if (is_logged_in()) {
         context.font = '24px Arial';
         context.textAlign = 'center';
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
+
+        console.log(score)
+
+        // var data = new FormData();
+        // data.append("score", score)
+        let data = {
+            score: score
+        }
+
+        console.log(data)
+
+        fetch("api/save_score.php", {
+            method: "POST",
+            headers: {
+                // "Content-type": "application/x-www-form-urlencoded",
+                "Content-type": "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+            },
+            // body: data
+            body: JSON.stringify({
+                "data": data
+            })
+        }).then(async res => {
+            let data = await res.json();
+            console.log("received data", data);
+            console.log("saved score");
+            window.location.reload(); // reload the webpage for new game
+        })
     }
 
     // Move the food to a random position 
     function moveFood() {
-        foodX = Math.floor((Math.random() * canvas.width) / blockSize) * blockSize;
-        foodY = Math.floor((Math.random() * canvas.height) / blockSize) * blockSize ;
+        foodX = Math.floor((Math.random() * (canvas.width - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
+        foodY = Math.floor((Math.random() * (canvas.height - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
 
-        console.log(foodX, foodY);
+        // console.log(foodX, foodY);
     }
 
     // Clear the canvas
@@ -154,13 +182,11 @@ if (is_logged_in()) {
 
     // The main draw loop
     function draw(timeStamp) {
-        secondsPassed = (timeStamp - oldTimeStamp) / 50;
+        secondsPassed = (timeStamp - oldTimeStamp) / 60;
         // secondsPassed = Math.min(secondsPassed, 0.1);
         oldTimeStamp = timeStamp;
 
         erase();
-
-        console.log(timeStamp)
 
         // move the snake continuously accordingly to the last inputted direction
         snakeX += snakeXChange * secondsPassed;
@@ -188,14 +214,6 @@ if (is_logged_in()) {
         if (snakeX + blockSize > canvas.width) {
             snakeX = canvas.width - blockSize;
         }
-
-        // DOESNT WORK: check if snake colliding with food using exact coords 
-        // if (foodX === snakeX && foodY === snakeY){
-        //     moveFood();
-        //     // Increase the score
-        //     score++;
-        //     snakeLength++;
-        // }
 
         // check is snake is colliding with food
         if (isWithin(foodX, snakeX, snakeX + blockSize) || isWithin(foodX + blockSize, snakeX, snakeX + blockSize)) { // X
@@ -237,3 +255,11 @@ if (is_logged_in()) {
 <?php
 require(__DIR__ . "/../../partials/flash.php");
 ?>
+
+<!-- 
+
+using ajax, make a post request for the score variable when the game ends
+
+then in php, using session variables
+
+-->
