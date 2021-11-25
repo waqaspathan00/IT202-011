@@ -62,7 +62,7 @@ if (is_logged_in()) {
     }
 
     // Countdown timer (in seconds)
-    var countdown = 5;
+    var countdown = 30;
     // ID to track the setTimeout
     var id = null;
 
@@ -128,37 +128,24 @@ if (is_logged_in()) {
         context.textAlign = 'center';
         context.fillText('Final Score: ' + score, canvas.width / 2, canvas.height / 2);
 
-        // add score to database
+        console.log(score)
+
+        // var data = new FormData();
+        // data.append("score", score)
         let data = {
-            score: score,
-            // data: sd
+            score: score
         }
 
         console.log(data)
 
-        // $.ajax({
-        //     type: "POST",
-        //     url: "api/save_score.php",
-        //     contentType: "application/json",
-        //     data: JSON.stringify({
-        //         data: data
-        //     }),
-        //     success: (resp, status, xhr) => {
-        //         console.log(resp, status, xhr);
-        //         window.location.reload(); //lazily reloading the page to get a new nonce for next game
-        //     },
-        //     error: (xhr, status, error) => {
-        //         console.log(xhr, status, error);
-        //         window.location.reload();
-        //     }
-        // });
-
         fetch("api/save_score.php", {
             method: "POST",
             headers: {
-                "Content-type": "application/x-www-form-urlencoded",
+                // "Content-type": "application/x-www-form-urlencoded",
+                "Content-type": "application/json",
                 "X-Requested-With": "XMLHttpRequest",
             },
+            // body: data
             body: JSON.stringify({
                 "data": data
             })
@@ -166,14 +153,14 @@ if (is_logged_in()) {
             let data = await res.json();
             console.log("received data", data);
             console.log("saved score");
-            // window.location.reload(); // reload the webpage for new game
+            window.location.reload(); // reload the webpage for new game
         })
     }
 
     // Move the food to a random position 
     function moveFood() {
-        foodX = Math.floor((Math.random() * canvas.width) / blockSize) * blockSize;
-        foodY = Math.floor((Math.random() * canvas.height) / blockSize) * blockSize ;
+        foodX = Math.floor((Math.random() * (canvas.width - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
+        foodY = Math.floor((Math.random() * (canvas.height - blockSize - blockSize)) / blockSize) * blockSize + blockSize;
 
         // console.log(foodX, foodY);
     }
@@ -195,7 +182,7 @@ if (is_logged_in()) {
 
     // The main draw loop
     function draw(timeStamp) {
-        secondsPassed = (timeStamp - oldTimeStamp) / 50;
+        secondsPassed = (timeStamp - oldTimeStamp) / 60;
         // secondsPassed = Math.min(secondsPassed, 0.1);
         oldTimeStamp = timeStamp;
 
