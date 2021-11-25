@@ -130,3 +130,54 @@ function get_url($dest)
     //handle relative path
     return $BASE_PATH . $dest;
 }
+
+function save_score( $user_id, $score, $showFlash = false)
+{
+    if ($user_id < 1) {
+        flash("Error saving score, you may not be logged in", "warning");
+        return;
+    }
+    if ($score <= 0) {
+        flash("Scores of zero are not recorded", "warning");
+        return;
+    }
+    $db = getDB();
+    $stmt = $db->prepare("INSERT INTO Scores (user_id, score) VALUES (:uid, :score)");
+    try {
+        $stmt->execute([":uid" => $user_id, ":score" => $score]);
+        if ($showFlash) {
+            flash("Saved score of $score", "success");
+        }
+    } catch (PDOException $e) {
+        flash("Error saving score: " . var_export($e->errorInfo, true), "danger");
+    }
+}
+
+function get_top_10($duration){
+    $db = getDB();
+    $query = "SELECT user_id, username, score, Scores.modified FROM Scores JOIN Users ON Scores.user_id = Users.id";
+
+    // the next few lines of code append functionality to the query string
+    if ($duration !== "lifetime"){
+        // if interval is not lifetime (IE week or month) then we need to filter the results 
+        $query .= " WHERE Scores.modified >= DATE_SUB(NOW(), INTERVAL 1 $duration)";
+    }
+    // regardless of interval, we only want the best 10 results
+    $query .= " ORDER BY score DESC, Scores.modified DESC LIMIT 10";
+
+    error_log($query);
+    $stmt = $db->prepare($query);
+    $results = [];
+    try {
+        $stmt->execute();
+        $r = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($r){
+            $results = $r;
+        }
+    } catch (PDOException $err){
+        error_log("Error fetching scores for $duration: " . var_export($err->errorInfo, true));
+    }
+
+    // var_export($results);
+    return $results;
+}
