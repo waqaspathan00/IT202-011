@@ -130,7 +130,7 @@
         - Status: Completed
         - Direct Link: https://wp23-prod.herokuapp.com/Project/home.php
         - Pull Requests
-          - https://github.com/waqaspathan00/IT202-011/pull/39
+          - https://github.com/waqaspathan00/IT202-011/pull/58
         - Screenshots
           - ![Saved Score](images/saved_score.png)
             - The score being saved after finished game
@@ -141,7 +141,7 @@
         - Status: Completed
         - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
         - Pull Requests
-          - https://github.com/waqaspathan00/IT202-011/pull/39
+          - https://github.com/waqaspathan00/IT202-011/pull/58
         - Screenshots
           - ![Last 10 Scores](images/last_10_scores.png)
             - The last 10 scores of the user will be displayed
@@ -150,7 +150,7 @@
         - Status: Completed
         - Direct Link: https://wp23-prod.herokuapp.com/Project/scoreboard.php
         - Pull Requests
-          - https://github.com/waqaspathan00/IT202-011/pull/39
+          - https://github.com/waqaspathan00/IT202-011/pull/58
         - Screenshots
           - ![Highscores for the Week](images/week_scoreboard.png)
             - The top 10 scores for the last week
