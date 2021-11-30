@@ -159,12 +159,12 @@
           - ![Lifetime Highscores](images/lifetime_scores.png)
             - Lifetime top 10 high scores
 - Milestone 3
-  - [ ] \(mm/dd/yyyy of completion) Users will have points associated with their account (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(11/30/2021) Users will have points associated with their account (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/61
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
