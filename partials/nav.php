@@ -61,6 +61,9 @@ require_once(__DIR__ . "/../lib/functions.php");
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
                 <?php endif; ?>
             </ul>
+            <span class="navbar-text show-points">
+                
+            </span>
         </div>
     </div>
 </nav>
