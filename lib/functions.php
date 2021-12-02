@@ -183,8 +183,8 @@ function get_top_10($duration){
 }
 
 function get_points(){
-    if (is_logged_in() && isset($_SESSION["user"]["account"])){
-        return (int)se($_SESSION["user"]["account"], "points", 0, false);
+    if (is_logged_in() && isset($_SESSION["user"]["points"])){
+        return (int)se($_SESSION["user"]["points"], "points", 0, false);
     }
     return 0;
 }
