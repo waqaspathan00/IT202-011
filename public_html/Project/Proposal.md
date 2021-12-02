@@ -167,7 +167,7 @@
         - https://github.com/waqaspathan00/IT202-011/pull/61
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+          - Current points of the logged in user is 10 (generated manually)
   - [ ] \(mm/dd/yyyy of completion) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
       - Status: Pending (Completed, Partially working, Incomplete, Pending)
