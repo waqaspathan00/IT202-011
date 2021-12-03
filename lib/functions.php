@@ -192,14 +192,79 @@ function get_points(){
 function points_update()
 {
     if (is_logged_in()) {
-        $query = "UPDATE Users SET points = (SELECT SUM(point_change) FROM PointsHistory WHERE user_id = :uid) WHERE id = :uid";
+        $query = "UPDATE Users SET points = (SELECT IFNULL(SUM(point_change), 0) FROM PointsHistory WHERE user_id = :uid) WHERE id = :uid";
         $db = getDB();
         $stmt = $db->prepare($query);
         try {
             $stmt->execute([":uid" => get_user_id()]);
-           // get_or_create_account(); //refresh session data
+            get_or_create_user(); //refresh session data
         } catch (PDOException $e) {
             flash("Error refreshing account: " . var_export($e->errorInfo, true), "danger");
+        }
+    }
+}
+
+/**
+ * Will fetch the account of the logged in user, or create a new one if it doesn't exist yet.
+ * Exists here so it may be called on any desired page and not just login
+ * Will populate/refresh $_SESSION["user"]["account"] regardless.
+ * Make sure this is called after the session has been set
+ */
+function get_or_create_user()
+{
+    if (is_logged_in()) {
+        //let's define our data structure first
+        //id is for internal references, account_number is user facing info, and balance will be a cached value of activity
+        $user = ["id" => -1, "points" => 0];
+        //this should always be 0 or 1, but being safe
+        $query = "SELECT id, points from Users where id = :uid LIMIT 1";
+        $db = getDB();
+        $stmt = $db->prepare($query);
+        try {
+            $stmt->execute([":uid" => get_user_id()]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $result;
+            $user["id"] = $result["id"];
+            $user["points"] = $result["points"];
+            $created = true;
+        } catch (PDOException $e) {
+            flash("Technical error: " . var_export($e->errorInfo, true), "danger");
+        }
+        $_SESSION["user"]["points"] = $user; //storing the account info as a key under the user session
+        // if (isset($created) && $created) {
+        //     points_update();
+        // }
+        //Note: if there's an error it'll initialize to the "empty" definition around line 161
+
+    } else {
+        flash("You're not logged in", "danger");
+    }
+}
+
+function change_points($points, $reason, $forceAllowZero = false) {
+
+    if ($points > 0 || $forceAllowZero) {
+        $query = "INSERT INTO PointsHistory (user_id, point_change, reason) 
+            VALUES (:uid, :pc, :r)";
+        //I'll insert both records at once, note the placeholders kept the same and the ones changed.
+        $params[":uid"] = get_user_id();
+        $params[":pc"] = $points;
+        $params[":r"] = $reason;
+        $db = getDB();
+        $stmt = $db->prepare($query);
+        try {
+            $stmt->execute($params);
+            //added for module 10 to only refresh the logged in user's account
+            //if it's part of src or dest since this is called during competition winner payout
+            //which may not be the logged in user
+            points_update();
+            /*
+            if ($src === get_user_account_id() || $dest === get_user_account_id()) {
+                refresh_account_balance();
+            }
+            */
+        } catch (PDOException $e) {
+            flash("Transfer error occurred: " . var_export($e->errorInfo, true), "danger");
         }
     }
 }
