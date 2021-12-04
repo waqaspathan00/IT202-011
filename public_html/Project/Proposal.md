@@ -159,36 +159,36 @@
           - ![Lifetime Highscores](images/lifetime_scores.png)
             - Lifetime top 10 high scores
 - Milestone 3
-  - [ ] \(mm/dd/yyyy of completion) Users will have points associated with their account (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(11/30/2021) Users will have points associated with their account (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
+      - Pull Requests
+        - https://github.com/waqaspathan00/IT202-011/pull/61
+      - Screenshots
+        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
+          - Current points of the logged in user is 10 (generated manually)
+  - [x] \(11/30/2021) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
+    -  List of Evidence of Feature Completion
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(12/04/2021 of completion) Competitions table should have the following columns (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Competitions table should have the following columns (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(12/04/2021 of completion) User will be able to create a competition (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
-      - Pull Requests
-        - PR link #1 (repeat as necessary)
-      - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) User will be able to create a competition (from the proposal bullet point, if it's a sub-point indent it properly)
-    -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)
