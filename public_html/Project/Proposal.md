@@ -168,27 +168,27 @@
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Current points of the logged in user is 10 (generated manually)
-  - [ ] \(mm/dd/yyyy of completion) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(11/30/2021) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Competitions table should have the following columns (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(12/04/2021 of completion) Competitions table should have the following columns (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) User will be able to create a competition (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(12/04/2021 of completion) User will be able to create a competition (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
+      - Status: Completed
       - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
       - Pull Requests
         - PR link #1 (repeat as necessary)

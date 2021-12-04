@@ -240,40 +240,33 @@ function get_or_create_user()
             flash("Technical error: " . var_export($e->errorInfo, true), "danger");
         }
         $_SESSION["user"]["points"] = $user; //storing the account info as a key under the user session
-        // if (isset($created) && $created) {
-        //     points_update();
-        // }
-        //Note: if there's an error it'll initialize to the "empty" definition around line 161
-
+        
     } else {
         flash("You're not logged in", "danger");
     }
 }
 
-function change_points($points, $reason, $forceAllowZero = false) {
-
-    if ($points > 0 || $forceAllowZero) {
-        $query = "INSERT INTO PointsHistory (user_id, point_change, reason) 
-            VALUES (:uid, :pc, :r)";
-        //I'll insert both records at once, note the placeholders kept the same and the ones changed.
-        $params[":uid"] = get_user_id();
-        $params[":pc"] = $points;
-        $params[":r"] = $reason;
-        $db = getDB();
-        $stmt = $db->prepare($query);
-        try {
-            $stmt->execute($params);
-            //added for module 10 to only refresh the logged in user's account
-            //if it's part of src or dest since this is called during competition winner payout
-            //which may not be the logged in user
-            points_update();
-            /*
-            if ($src === get_user_account_id() || $dest === get_user_account_id()) {
-                refresh_account_balance();
-            }
-            */
-        } catch (PDOException $e) {
-            flash("Transfer error occurred: " . var_export($e->errorInfo, true), "danger");
+function change_points($points, $reason) {
+    $query = "INSERT INTO PointsHistory (user_id, point_change, reason) 
+        VALUES (:uid, :pc, :r)";
+    //I'll insert both records at once, note the placeholders kept the same and the ones changed.
+    $params[":uid"] = get_user_id();
+    $params[":pc"] = $points;
+    $params[":r"] = $reason;
+    $db = getDB();
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute($params);
+        //added for module 10 to only refresh the logged in user's account
+        //if it's part of src or dest since this is called during competition winner payout
+        //which may not be the logged in user
+        points_update();
+        /*
+        if ($src === get_user_account_id() || $dest === get_user_account_id()) {
+            refresh_account_balance();
         }
+        */
+    } catch (PDOException $e) {
+        flash("Transfer error occurred: " . var_export($e->errorInfo, true), "danger");
     }
 }

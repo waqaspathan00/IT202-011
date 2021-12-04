@@ -6,8 +6,11 @@ if (!is_logged_in()) {
     die(header("Location: " . $BASE_PATH));
 
 }
+// debug($_SESSION["user"]);
+// debug($_POST);
 ?>
-<?php if (isset($_SESSION["user"]["id"])) {
+
+<?php if (isset($_POST["name"])) {
     $id = se($_POST, "id", false, false);
     $name = se($_POST, "name", false, false);
     $duration = (int)se($_POST, "duration", 3, false);
@@ -99,8 +102,8 @@ if (!is_logged_in()) {
                 ":ctc" => $cost_to_create,
             ]);
             $id = (int)$db->lastInsertId();
-            if ($comp_id > 0) {
-                change_points($cost, "Created Competition #$id");
+            if ($id > 0) {  // if the Competition table exists
+                change_points(-$cost_to_create, "Created Competition #$id");
                 //TODO creator joins competition for free
                 //error_log("Attempt to join created competition: " . join_competition($comp_id, true));
                 flash("Successfully created Competition $name", "success");
