@@ -1,6 +1,15 @@
 <?php
 require_once(__DIR__ . "/db.php");
 $BASE_PATH = '/Project/'; //This is going to be a helper for redirecting to our base project path since it's nested in another folder
+
+function debug($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
+
 function se($v, $k = null, $default = "", $isEcho = true)
 {
     if (is_array($v) && isset($k) && isset($v[$k])) {

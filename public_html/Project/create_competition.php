@@ -4,62 +4,40 @@ if (!is_logged_in()) {
     flash("You must be logged in to access this page", "danger");
 
     die(header("Location: " . $BASE_PATH));
+
 }
 ?>
-<?php if (isset($_SESSION["user"])) {
-    flash("test", "warning");
+<?php if (isset($_SESSION["user"]["id"])) {
     $id = se($_POST, "id", false, false);
     $name = se($_POST, "name", false, false);
     $duration = (int)se($_POST, "duration", 3, false);
     $expires = se($_POST, "expires", 1, false);
-    $current_reward = (int)se($_POST, "curent_reward", 1, false);
+    $current_reward = (int)se($_POST, "current_reward", 1, false);
     $starting_reward = (int)se($_POST, "starting_reward", 1, false);
     $join_fee = (int)se($_POST, "join_fee", 0, false);
     $current_participants = (int)se($_POST, "current_participants", 0, false);
     $min_participants = (int)se($_POST, "min_participants", 3, false);
     $paid_out = false;
     $min_score = (int)se($_POST, "min_score", 1, false);
-    $first_place_per = "1";
+    $first_place_per = "1";  // by default, first place will get 100% of reward
     $second_place_per = "0";
     $third_place_per = "0";
     $payout_split = se($_POST, "payout", 1, false);
     $cost_to_create = $starting_reward + 1;
     $points = (int)se(get_points(), null, 0, false);
    
-    switch ($payout_split) {
-        case "2":
-            $first_place_per = "0.8";
-            $second_place_per = "0.2";
-            $third_place_per = "0";
-            //$payout = ".8,.2";
-            break;
-        case "3":
-            //$payout = ".7,.2,.1";
-            $first_place_per = "0.7";
-            $second_place_per = "0.2";
-            $third_place_per = "0.1";
-            break;
-        case "4":
-            //$payout = ".6,.3,.1";
-            $first_place_per = "0.6";
-            $second_place_per = "0.3";
-            $third_place_per = "0.1";
-            break;
-        case "5":
-            //$payout = ".34,.33,.33";
-            $first_place_per = "0.34";
-            $second_place_per = "0.33";
-            $third_place_per = "0.33";
-            break;
-        default:
-            //$payout = "1";
-            $first_place_per = "1";
-            $second_place_per = "0";
-            $third_place_per = "0";
-            break;
+    if ($payout_split == 2){
+        $first_place_per = "0.7";
+        $second_place_per = "0.2";
+        $third_place_per = "0.1";
     }
+
     $isValid = true;
     //validate
+    if (!!$name === false) {
+        flash("Name must be set", "warning");
+        $isValid = false;
+    }
     if ($starting_reward < 0) {
         flash("Invalid Starting Reward", "warning");
         $isValid = false;
@@ -74,11 +52,9 @@ if (!is_logged_in()) {
     }
     if ($min_participants < 3) {
         flash("All competitions require at least 3 participants to payout", "warning");
-    }
-    if (!!$name === false) {
-        flash("Name must be set", "warning");
         $isValid = false;
     }
+    
 
     /*
     if ($join_fee < 0) {
@@ -92,23 +68,26 @@ if (!is_logged_in()) {
         $isValid = false;
     }
     */
+
     if ($duration < 3 || is_nan($duration)) {
         flash("Competitions must be 3 or greater days", "warning");
         $isValid = false;
-    }
+    }  
+
     if ($isValid) {
         //create competition and deduct cost
         $db = getDB();
         //setting 1 for participants since we'll be adding creator to the comp, this saves an update query
         //using sql to calculate the expires date by passing in a sanitized/validated $duration
         //setting starting_reward and current_reward to the same value
-        //$query = "INSERT INTO Competitions (name, creator, starting_reward, current_reward, min_participants, current_participants, entry_fee, reward_increase, payouts, expires)
-        $query = "INSERT INTO Competitions (name, expires, current_reward, starting_reward, join_fee, current_participants, min_participants, min_score, first_place_per, second_place_per, third_place_per)
-        values (:n, DATE_ADD(NOW(), INTERVAL $duration day), :cr ,:sr, :jf, 1, :mp, :ms, :fpp, :spp :tpp)";
+        $query = "INSERT INTO Competitions (name, duration, expires, current_reward, starting_reward, join_fee, current_participants, min_participants, min_score, first_place_per, second_place_per, third_place_per, cost_to_create)
+            values (:n, :d, DATE_ADD(NOW(), INTERVAL $duration day), :cr, :sr, :jf, 1, :mp, :ms, :fpp, :spp, :tpp, :ctc)";
+        
         $stmt = $db->prepare($query);
         try {
             $stmt->execute([
                 ":n" => $name,
+                ":d" => $duration,
                 ":cr" => $current_reward,
                 ":sr" => $starting_reward,
                 ":jf" => $join_fee,
@@ -116,7 +95,8 @@ if (!is_logged_in()) {
                 ":ms" => $min_score,
                 ":fpp" => $first_place_per,
                 ":spp" => $second_place_per,
-                ":tpp" => $third_place_per
+                ":tpp" => $third_place_per,
+                ":ctc" => $cost_to_create,
             ]);
             $id = (int)$db->lastInsertId();
             if ($comp_id > 0) {
@@ -159,10 +139,7 @@ if (!is_logged_in()) {
             <label class="form-label" for="payout">Payout Split</label>
             <select class="form-control" name="payout" required>
                 <option value="1">100% to First</option>
-                <option value="2">80% to First, 20% to Second</option>
-                <option value="3">70% to First, 20% to Second, 10% to Third</option>
-                <option value="4">60% to First, 30% to Second, 10% to Third</option>
-                <option value="5">34% to First, 33% to Second, 33% to Third</option>
+                <option value="2">70% to First, 20% to Second, 10% to Third</option>
             </select>
         </div>
         <div>Cost: <span id="cost">2</span></div>
