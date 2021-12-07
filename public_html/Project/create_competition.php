@@ -6,8 +6,6 @@ if (!is_logged_in()) {
     die(header("Location: " . $BASE_PATH));
 
 }
-// debug($_SESSION["user"]);
-// debug($_POST);
 ?>
 
 <?php if (isset($_POST["name"])) {
