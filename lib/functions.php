@@ -409,9 +409,8 @@ function calc_winners()
         error_log("Getting Expired Comps error: " . var_export($e, true));
     }
     //closing calced comps
-    // I DONT HAVE DID CALC COLUMN
     if (count($calced_comps) > 0) {
-        $query = "UPDATE Competitions set did_calc = 1 AND did_payout = 1 WHERE id in ";
+        $query = "UPDATE Competitions set paid_out = 1 WHERE id in ";
         $query = "(" . str_repeat("?,", count($calced_comps) - 1) . "?)";
         error_log("Close query: $query");
         $stmt = $db->prepare($query);
@@ -426,8 +425,7 @@ function calc_winners()
         error_log("No competitions to calc");
     }
     //close invalid comps
-    // I DONT HAVE DID CALC COLUMN
-    $stmt = $db->prepare("UPDATE Competitions set did_calc = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants AND did_calc = 0");
+    $stmt = $db->prepare("UPDATE Competitions set paid_out = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants AND did_calc = 0");
     try {
         $stmt->execute();
         $rows = $stmt->rowCount();
@@ -448,7 +446,7 @@ function get_top_scores_for_comp($comp_id, $limit = 10)
     JOIN Competitions c on cp.competition_id = c.id
     JOIN Users u on u.id = s.user_id
     WHERE c.id = :cid AND s.modified BETWEEN cp.created AND c.expires
-    )as t where `rank` = 1 ORDER BY score desc LIMIT :limit");
+    ) as t where `rank` = 1 ORDER BY score desc LIMIT :limit");
 
     $scores = [];
     try {
