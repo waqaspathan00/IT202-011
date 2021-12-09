@@ -159,87 +159,81 @@
           - ![Lifetime Highscores](images/lifetime_scores.png)
             - Lifetime top 10 high scores
 - Milestone 3
-  - [x] \(11/30/2021) Users will have points associated with their account (from the proposal bullet point, if it's a sub-point indent it properly)
+  - [x] \(11/30/2021) Users will have points associated with their account
     -  List of Evidence of Feature Completion
       - Status: Completed
       - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
       - Pull Requests
         - https://github.com/waqaspathan00/IT202-011/pull/61
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Current points of the logged in user is 10 (generated manually)
-  - [x] \(11/30/2021) Create a PointsHistory table (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Showing Points](images/showing_points.png)
+          - Current points of the logged in user is 10
+  - [x] \(11/30/2021) Create a PointsHistory table
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/61
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [x] \(12/04/2021 of completion) Competitions table should have the following columns (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Points History](images/pointshistory_table.png)
+          - Screenshot of the points history table
+  - [x] \(12/04/2021 of completion) Competitions table should have the following columns
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/62
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [x] \(12/04/2021 of completion) User will be able to create a competition (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Competitions](images/competitions_table.png)
+          - Screenshot of the competitions table
+  - [x] \(12/04/2021 of completion) User will be able to create a competition
     -  List of Evidence of Feature Completion
       - Status: Completed
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/create_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/62
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Each new participant causes the reward value to increase by atleast 1 or 50% of the joining fee rounded up (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Create Competition](images/create_comp.png)
+          - Users can create competitions and modify their params
+  - [x] \(12/07/2021 of completion) Each new participant causes the reward value to increase by atleast 1 or 50% of the joining fee rounded up
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/join_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - PR link #1 https://github.com/waqaspathan00/IT202-011/pull/63
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Have a page where the User can see active competitions (not expired) (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Increased Reward](images/join_comp.png)
+          - The first competition has 2 participants and 1 more reward value then the ones below it which only have 1 participant and 1 less reward value
+  - [x] \(12/07/2021 of completion) Have a page where the User can see active competitions (not expired)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/join_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/63
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Will need an association table CompetitionParticipants (id, comp_id, user_id, created) (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Join Competition](images/join_comp.png)
+          - Users can join competition, this one has created all of them so they are automatically "joined"
+  - [x] \(mm/dd/yyyy of completion) Will need an association table CompetitionParticipants (id, comp_id, user_id, created) (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/64
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) User can join active competitions (from the proposal bullet point, if it's a sub-point indent it properly)
+        - ![Competition Participants](images/competition_participants.png)
+          - A screenshot of the competition participants table
+  - [x] \(mm/dd/yyyy of completion) User can join active competitions (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/join_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/63
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+        - ![Join Competition](images/join_comp.png)
+          - Screenshot of the user having joined active competitions
   - [ ] \(mm/dd/yyyy of completion) Create function that calculates competition winners (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
-      - Pull Requests
-        - PR link #1 (repeat as necessary)
-      - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+      - Status: Incomplete
+        - The functions dont work after changing the table references and columns. I know theres a problem with the queuries but I cant figure it out because the queuries are too long and hard to debug
   
 - Milestone 4
   - [ ] \(mm/dd/yyyy of completion) User can set their profile to be public or private
