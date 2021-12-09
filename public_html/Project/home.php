@@ -62,7 +62,7 @@ if (is_logged_in()) {
     }
 
     // Countdown timer (in seconds)
-    var countdown = 30;
+    var countdown =5;
     // ID to track the setTimeout
     var id = null;
 

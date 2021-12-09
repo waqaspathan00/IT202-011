@@ -40,6 +40,15 @@ require_once(__DIR__ . "/../lib/functions.php");
                 <li class="nav-item"><a class="nav-link" href="<?php echo get_url("scoreboard.php"); ?>">Scoreboard</a></li>
                 <?php if (is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rolesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Competitions
+                        </a>
+                        <ul class="dropdown-menu bg-primary" aria-labelledby="rolesDropdown">
+                            <li><a class="nav-link" href="<?php echo get_url('create_competition.php'); ?>">Create</a></li>
+                            <li><a class="nav-link" href="<?php echo get_url('join_competition.php'); ?>">Join</a></li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
                 <?php if (!is_logged_in()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('login.php'); ?>">Login</a></li>
@@ -61,6 +70,9 @@ require_once(__DIR__ . "/../lib/functions.php");
                     <li class="nav-item"><a class="nav-link" href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
                 <?php endif; ?>
             </ul>
+            <span class="navbar-text show-points">
+                
+            </span>
         </div>
     </div>
 </nav>

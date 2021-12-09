@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
+require_once(__DIR__ . "/show_scores.php");
 is_logged_in(true);
 ?>
 <?php
@@ -107,8 +108,6 @@ if (isset($_POST["save"])) {
 
   </tbody>
 </table>
-
-d
 
 <?php
 $email = get_user_email();
