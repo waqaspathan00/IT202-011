@@ -233,7 +233,7 @@
   - [ ] \(mm/dd/yyyy of completion) Create function that calculates competition winners (from the proposal bullet point, if it's a sub-point indent it properly)
     -  List of Evidence of Feature Completion
       - Status: Incomplete
-        - The functions dont work after changing the table references and columns. I know theres a problem with the queuries but I cant figure it out because the queuries are too long and hard to debug
+        - The functions I added from your reference dont work after changing the table references and columns. I know the problem lies within the queuries but its hard for me to debug it as the queuries are very long. I decided to stop trying to fix it so I could move onto Milestone 4.
   
 - Milestone 4
 ### Intructions
