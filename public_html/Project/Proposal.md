@@ -236,12 +236,12 @@
         - The functions dont work after changing the table references and columns. I know theres a problem with the queuries but I cant figure it out because the queuries are too long and hard to debug
   
 - Milestone 4
-  - [ ] \(mm/dd/yyyy of completion) User can set their profile to be public or private
+  - [x] \(12/12/2021) User can set their profile to be public or private
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - PR link #1 https://github.com/waqaspathan00/IT202-011/pull/67
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
