@@ -243,8 +243,10 @@
       - Pull Requests
         - PR link #1 https://github.com/waqaspathan00/IT202-011/pull/67
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+        - ![Public Profile 1](images/public_profile1.png)
+          - Screenshot of users table and the visibility being updated
+        - ![Public Profile 2](images/public_profile2.png)
+          - Toggle profile visibility 
   - [ ] \(mm/dd/yyyy of completion) Uesrs will be able to see their competition history
     -  List of Evidence of Feature Completion
       - Status: Pending (Completed, Partially working, Incomplete, Pending)
