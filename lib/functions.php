@@ -12,11 +12,17 @@ function debug($data) {
 
 function se($v, $k = null, $default = "", $isEcho = true)
 {
+    // $v - array of items
+    // $k - a value/ key
+
     if (is_array($v) && isset($k) && isset($v[$k])) {
+        // is $k is a value in $v
         $returnValue = $v[$k];
     } else if (is_object($v) && isset($k) && isset($v->$k)) {
+        // is $k an attribute of $v
         $returnValue = $v->$k;
     } else {
+        // if $k is related to $v, return $v
         $returnValue = $v;
         //added 07-05-2021 to fix case where $k of $v isn't set
         //this is to kep htmlspecialchars happy
@@ -25,6 +31,7 @@ function se($v, $k = null, $default = "", $isEcho = true)
         }
     }
     if (!isset($returnValue)) {
+        // if $returnvalue did not get a value, assign it to $default
         $returnValue = $default;
     }
     if ($isEcho) {
@@ -409,9 +416,8 @@ function calc_winners()
         error_log("Getting Expired Comps error: " . var_export($e, true));
     }
     //closing calced comps
-    // I DONT HAVE DID CALC COLUMN
     if (count($calced_comps) > 0) {
-        $query = "UPDATE Competitions set did_calc = 1 AND did_payout = 1 WHERE id in ";
+        $query = "UPDATE Competitions set paid_out = 1 WHERE id in ";
         $query = "(" . str_repeat("?,", count($calced_comps) - 1) . "?)";
         error_log("Close query: $query");
         $stmt = $db->prepare($query);
@@ -426,8 +432,7 @@ function calc_winners()
         error_log("No competitions to calc");
     }
     //close invalid comps
-    // I DONT HAVE DID CALC COLUMN
-    $stmt = $db->prepare("UPDATE Competitions set did_calc = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants AND did_calc = 0");
+    $stmt = $db->prepare("UPDATE Competitions set paid_out = 1 WHERE expires <= CURRENT_TIMESTAMP() AND current_participants < min_participants AND did_calc = 0");
     try {
         $stmt->execute();
         $rows = $stmt->rowCount();
@@ -448,7 +453,7 @@ function get_top_scores_for_comp($comp_id, $limit = 10)
     JOIN Competitions c on cp.competition_id = c.id
     JOIN Users u on u.id = s.user_id
     WHERE c.id = :cid AND s.modified BETWEEN cp.created AND c.expires
-    )as t where `rank` = 1 ORDER BY score desc LIMIT :limit");
+    ) as t where `rank` = 1 ORDER BY score desc LIMIT :limit");
 
     $scores = [];
     try {
@@ -464,4 +469,19 @@ function get_top_scores_for_comp($comp_id, $limit = 10)
         error_log("List competition scores error: " . var_export($e, true));
     }
     return $scores;
+}
+
+function redirect($path)
+{ //header headache
+    //https://www.php.net/manual/en/function.headers-sent.php#90160
+    /*headers are sent at the end of script execution otherwise they are sent when the buffer reaches it's limit and emptied */
+    if (!headers_sent()) {
+        //php redirect
+        die(header("Location: " . get_url($path)));
+    }
+    //javascript redirect
+    echo "<script>window.location.href='" . get_url($path) . "';</script>";
+    //metadata redirect (runs if javascript is disabled)
+    echo "<noscript><meta http-equiv=\"refresh\" content=\"0;url=" . get_url($path) . "\"/></noscript>";
+    die();
 }
