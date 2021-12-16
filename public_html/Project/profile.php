@@ -90,6 +90,13 @@ if (isset($_POST["save"]) && $isMe && $edit) {
             flash("New passwords don't match", "warning");
         }
     }
+
+    // flash messaging for profile visibility changing
+    // NOTES: will always flash if public profile, how to flash when profile changed to private?
+    // $visibility = se($_POST, "visibility", null, false);
+    // if (!empty($visibility)) {
+    //     flash("Profile now public!");
+    // }
 }
 ?>
 

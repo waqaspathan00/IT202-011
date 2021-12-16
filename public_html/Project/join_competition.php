@@ -64,6 +64,10 @@ try {
                         <div class="col"><?php se($result, "join_fee"); ?></div>
                         <div class="col">
                             <!--<a class="btn btn-primary" href="competition.php?id=<?php se($result, "id"); ?>">Details</a> will implement later-->
+                            <?php if (has_role("Admin")) : ?>
+                                <button class="btn btn-primary" href="?edit=true">Edit</button>
+                            <?php endif ?>
+
                             <?php if ((int)se($result, "joined", 0, false) > 0 ) : ?>
                                 <button class="btn btn-secondary" disabled><em>Joined</em></button>
                                 <!-- <input class="btn btn-warning" value="Joined" disabled/> -->
