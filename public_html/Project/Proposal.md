@@ -241,30 +241,32 @@
       - Status: Completed
       - Direct Link: https://wp23-prod.herokuapp.com/Project/profile.php
       - Pull Requests
-        - PR link #1 https://github.com/waqaspathan00/IT202-011/pull/67
+        - https://github.com/waqaspathan00/IT202-011/pull/67
       - Screenshots
         - ![Public Profile 1](images/public_profile1.png)
           - Screenshot of users table and the visibility being updated
         - ![Public Profile 2](images/public_profile2.png)
           - Toggle profile visibility 
-  - [ ] \(mm/dd/yyyy of completion) Uesrs will be able to see their competition history
+  - [x] \(12/13/2021 of completion) Uesrs will be able to see their competition history
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Partially working
+        - Pagination has not yet been added
+      - Direct Link: http://localhost:3005/Project/history_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/68
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) User with the role of admin can edit a competition where paid_out = false
+        - ![Competition History](images/competition_history.png)
+          - The given users history of competitions they've participated in
+  - [x] \(12/16/2021 of completion) User with the role of admin can edit a competition where paid_out = false
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Partially working
+        - Have not yet added the core logic of editing feature.
+      - Direct Link: http://localhost:3005/Project/join_competition.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/68
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+        - ![Edit Competition](images/competition_history.png)
+          - Admin users can edit competitions
   - [ ] \(mm/dd/yyyy of completion) Add pagination to Active Competitions view
     -  List of Evidence of Feature Completion
       - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -274,15 +276,17 @@
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Anywhere a username is displayed should be a link to that users profile
+  - [x] \(12/13/2021 of completion) Anywhere a username is displayed should be a link to that users profile
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: http://localhost:3005/Project/scoreboard.php 
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/68
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+        - ![Someone's profile 1](images/link_to_someones_profile.png)
+          - Showing a link to view someone elses profile
+        - ![Someone's profile 2](images/another_users_profile.png)
+          - A view of someone elses profile
   - [ ] \(mm/dd/yyyy of completion) Viewing an active or expired competition should show the top 10 scoreboard related to that competition
     -  List of Evidence of Feature Completion
       - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -292,15 +296,15 @@
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Game should be fully implemented/ complete by this point
+  - [x] \(10/10/2021 of completion) Game should be fully implemented/ complete by this point
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: http://localhost:3005/Project/home.php
       - Pull Requests
-        - PR link #1 (repeat as necessary)
+        - https://github.com/waqaspathan00/IT202-011/pull/35
       - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
+        - ![Game View](images/game_view.png)
+          - A non-logged-in users view of the game
   - [ ] \(mm/dd/yyyy of completion) Users score history will include pagination
     -  List of Evidence of Feature Completion
       - Status: Pending (Completed, Partially working, Incomplete, Pending)
@@ -312,13 +316,26 @@
           - Screenshot #1 description explaining what you're trying to show
   - [ ] \(mm/dd/yyyy of completion) Home page will have a weekly, monthly and lifetime scoreboard
     -  List of Evidence of Feature Completion
-      - Status: Pending (Completed, Partially working, Incomplete, Pending)
-      - Direct Link: (Direct link to the file or files in heroku prod for quick testing (even if it's a protected page))
+      - Status: Completed
+      - Direct Link: http://localhost:3005/Project/scoreboard.php
       - Pull Requests
         - PR link #1 (repeat as necessary)
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
+  - [x] \(11/24/2021) Home page will have a weekly, monthly and lifetime scoreboard(this will be used later)
+      -  List of Evidence of Feature Completion
+        - Status: Completed
+        - Direct Link: https://wp23-prod.herokuapp.com/Project/scoreboard.php
+        - Pull Requests
+          - https://github.com/waqaspathan00/IT202-011/pull/58
+        - Screenshots
+          - ![Weekly Highscores](images/week_scores2.png)
+            - The top 10 scores for the last week
+          - ![Monthly Highscores](images/month_scores2.png)
+            - The top 10 scores for the last month
+          - ![Lifetime Highscores](images/lifetime_scores2.png)
+            - Lifetime top 10 high scores
   
 
 ### Intructions
