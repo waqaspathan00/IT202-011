@@ -50,7 +50,14 @@
                                                             
         <?php foreach($results as $row): ?>
             <tr>
-                <td><?=$row['username']?></td>
+                <!-- <td><?=$row['username']?></td> -->
+                <td>
+                    <?php 
+                        $user_id = se($row, "user_id", 0, false);
+                        $username = se($row, "username", "", false);
+                        require(__DIR__ . "/../../partials/user_profile_link.php");
+                    ?>
+                </td>
                 <td><?=$row['score']?></td>
                 <td><?=$row['modified']?></td>
             </tr>
