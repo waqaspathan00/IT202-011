@@ -47,6 +47,7 @@ require_once(__DIR__ . "/../lib/functions.php");
                         <ul class="dropdown-menu bg-primary" aria-labelledby="rolesDropdown">
                             <li><a class="nav-link" href="<?php echo get_url('create_competition.php'); ?>">Create</a></li>
                             <li><a class="nav-link" href="<?php echo get_url('join_competition.php'); ?>">Join</a></li>
+                            <li><a class="nav-link" href="<?php echo get_url('history_competition.php'); ?>">History</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
