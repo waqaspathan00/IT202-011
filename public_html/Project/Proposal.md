@@ -314,16 +314,7 @@
       - Screenshots
         - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
           - Screenshot #1 description explaining what you're trying to show
-  - [ ] \(mm/dd/yyyy of completion) Home page will have a weekly, monthly and lifetime scoreboard
-    -  List of Evidence of Feature Completion
-      - Status: Completed
-      - Direct Link: http://localhost:3005/Project/scoreboard.php
-      - Pull Requests
-        - PR link #1 (repeat as necessary)
-      - Screenshots
-        - Screenshot #1 (paste the image so it uploads to github) (repeat as necessary)
-          - Screenshot #1 description explaining what you're trying to show
-  - [x] \(11/24/2021) Home page will have a weekly, monthly and lifetime scoreboard(this will be used later)
+  - [x] \(11/24/2021) Home page will have a weekly, monthly and lifetime scoreboard
       -  List of Evidence of Feature Completion
         - Status: Completed
         - Direct Link: https://wp23-prod.herokuapp.com/Project/scoreboard.php
